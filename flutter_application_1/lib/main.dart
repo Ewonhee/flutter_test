@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var a = 1;
   var total = 3;
-  final List<String> name = ['김영숙', '홍길동', '피자집','비인가'];
+  final List<String> name = ['김영숙', '홍길동', '피자집','제이비'];
   final List<int> like = [0, 0, 0, 0, 0];
 
   addone(){

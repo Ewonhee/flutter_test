@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 
 
 void main() {
@@ -16,6 +16,24 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+    getPermission() async {
+      var status = await Permission.contacts.status;
+      if (status.isGranted) {
+        print('허락됨');
+      } else if (status.isDenied) {
+        print('거절됨');
+        Permission.contacts.request();
+      }
+    }
+
+    @override
+  void initState() {
+    super.initState();
+    getPermission();
+  } 
+
+
   var a = 1;
   var total = 3;
   final List<String> name = ['김영숙', '홍길동', '피자집','제이비'];
@@ -52,7 +70,9 @@ class _MyAppState extends State<MyApp> {
                 backgroundColor: Colors.blue,
                 title : Text(total.toString()),
                 leading : Icon(Icons.star),
-                actions : const[ Icon(Icons.star), Icon(Icons.star) ]
+                actions : [
+                IconButton(onPressed: (){ getPermission(); }, icon : Icon(Icons.contacts))
+                 ]
               ),
         body: 
               Contact(name : name, like: like)
